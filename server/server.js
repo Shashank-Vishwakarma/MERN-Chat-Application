@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes.js';
 
 // importing db.js for making connection to database on project init
@@ -7,6 +8,12 @@ import db from './database/db.js';
 
 const app = express();
 dotenv.config();
+
+// to parse req.body as json
+app.use(express.json());
+
+// to parse req.cookies as object
+app.use(cookieParser());
 
 app.use('/api/v1/auth', authRoutes);
 
