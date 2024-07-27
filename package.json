@@ -1,0 +1,28 @@
+{
+  "name": "mern-chat-application",
+  "version": "1.0.0",
+  "description": "1. ReactJS\r 2. TailwindCSS\r 3. Daisy UI\r 4. NodeJS\r 5. Express\r 6. Web Socket (socket.io library)\r 7. JWT Authentication\r 8. Zustand (for global state management)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server/.js",
+    "server": "nodemon server/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
