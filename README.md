@@ -9,3 +9,8 @@
 4. Express
 5. Web Socket (socket.io library)
 6. JWT Authentication
+
+## Frontend setup
+
+
+## Backend setup
