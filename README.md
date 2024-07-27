@@ -13,7 +13,7 @@
 8. Zustand (for global state management)
 
 ## Frontend setup
-1. Run below Commands to run client.
+2. Move to client folder and Run below Commands to run client.
 ```
 npm install
 npm run dev
@@ -24,8 +24,10 @@ npm run dev
 ```
 PORT=...
 MONGODB_URL=... # replace with http://localhost:27017 for local mongodb connection
+JWT_SECRET_KEY=...
+NODE_ENV=...
 ```
-2. Run below commands to start server.
+2. Move to root directory and Run below commands to start server.
 ```
 npm install
 npm run server
