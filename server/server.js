@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 
+// importing db.js for making connection to database on project init
+import db from './database/db.js';
+
 const app = express();
 dotenv.config();
 
