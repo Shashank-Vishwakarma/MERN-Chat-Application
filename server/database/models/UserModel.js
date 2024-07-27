@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ''
     }
-}, { collection: 'User' });
+}, { collection: 'User', timestamps: true });
 
 
 userSchema.pre('save', async function(next) {

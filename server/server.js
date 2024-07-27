@@ -1,7 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+
 import authRoutes from './routes/authRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
 
 // importing db.js for making connection to database on project init
 import db from './database/db.js';
@@ -16,6 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/messages', messageRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
