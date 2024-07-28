@@ -63,7 +63,7 @@ export const loginAuth = async (req, res) => {
         res.cookie('token', JWTtoken, cookieOptions);
         res.status(200).json({ error: 'Login successful!', token: JWTtoken });
     } catch(err) {
-        res.status(500).json({ error: 'Error logging the user in' });
+        res.status(500).json({ error: `Error logging the user in: ${err}` });
     }
 };
 
@@ -75,3 +75,8 @@ export const logoutAuth = (req, res) => {
         res.status(500).json({ error: 'Error logging the user out' });
     }
 };
+
+
+export const getCurrentUser = async (req, res) => {
+    res.status(200).json({ user: req.user });
+}

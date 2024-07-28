@@ -17,6 +17,7 @@ app.use(express.json());
 // to parse req.cookies as object
 app.use(cookieParser());
 
+// routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/messages', messageRoutes);
 
