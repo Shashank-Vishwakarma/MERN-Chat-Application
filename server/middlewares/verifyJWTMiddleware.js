@@ -18,8 +18,6 @@ export const verifyJWTMiddleware = async (req, res, next) => {
             return res.status(401).json({ error: 'Unauthorized - Invalid Token' });
         }
 
-        console.log(decodedPayload);
-
         const user = await User.findById(decodedPayload.payload.id);
         if(!user) {
             return res.status(401).json({ error: 'User not found' });
