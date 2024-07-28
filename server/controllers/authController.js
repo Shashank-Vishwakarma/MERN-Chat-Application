@@ -75,8 +75,3 @@ export const logoutAuth = (req, res) => {
         res.status(500).json({ error: 'Error logging the user out' });
     }
 };
-
-
-export const getCurrentUser = async (req, res) => {
-    res.status(200).json({ user: req.user });
-}
