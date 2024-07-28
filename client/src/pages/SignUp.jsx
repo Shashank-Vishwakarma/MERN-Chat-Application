@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const navigateTo = useNavigate();
+
     return (
         <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
             <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
@@ -39,7 +42,7 @@ const SignUp = () => {
 
                     <div className='flex gap-4 justify-center'>
                         <span>Already have an account?</span>
-                        <span className='font-bold cursor-pointer text-blue-400'>Login</span>
+                        <span onClick={()=> navigateTo('/login')} className='font-bold cursor-pointer text-blue-400'>Login</span>
                     </div>
                     <button type='submit' className='btn btn-block btn-sm mt-2' onClick={(e) => e.preventDefault()}>Sign Up</button>
                 </form>
