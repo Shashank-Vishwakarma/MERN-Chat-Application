@@ -11,7 +11,9 @@ export const getCurrentUser = (req, res) => {
 
 export const getAllUsers = async (req, res) => {
     try {
-        const users = await User.find({});
+        const currentUserId = req.user._id
+
+        const users = await User.find({ _id: { $ne: currentUserId } }).select(["fullName", "username", "gender", "profilePicture"]);
         res.status(200).json({ users });
     } catch(err) {
         res.status(500).json({ error: `Error in getting all users: ${err}` });
