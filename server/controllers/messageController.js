@@ -34,3 +34,22 @@ export const sendMessage = async (req, res) => {
         res.status(500).json({ error: `Error sending the message: ${err}` });
     }
 }
+
+export const getMessages = async (req, res) => {
+    try {
+        const receiverId = req.params.id;
+        const senderId = req.user._id;
+
+        const conversation = await Conversation.findOne({
+            participants: { $all: [senderId, receiverId] }
+        }).populate('messages');
+
+        if(!conversation) {
+            return res.status(200).json({ messages: [] })
+        }
+
+        return res.status(200).json(conversation.messages);
+    } catch(err) {
+        res.status(500).json({ error: `Error in getting the messages: ${err}` })
+    }
+}
