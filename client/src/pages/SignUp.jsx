@@ -16,6 +16,7 @@ const SignUp = () => {
     const handleSignUp = async (e)=>{
         e.preventDefault();
         await signUp({...inputs});
+        navigateTo('/');
     }
 
     return (

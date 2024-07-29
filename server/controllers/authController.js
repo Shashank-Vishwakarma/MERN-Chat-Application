@@ -70,7 +70,7 @@ export const loginAuth = async (req, res) => {
 export const logoutAuth = (req, res) => {
     try {
         res.cookie('token', '', { maxAge: 0 });
-        res.status(500).json({ message: 'User logged out successfully!' });
+        res.status(200).json({ message: 'User logged out successfully!' });
     } catch(err) {
         res.status(500).json({ error: 'Error logging the user out' });
     }

@@ -13,6 +13,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         await login({...inputs});
+        navigateTo('/');
     }
 
     return (
