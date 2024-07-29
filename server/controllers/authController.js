@@ -35,6 +35,7 @@ export const signUpAuth = async (req, res) => {
         res.status(201).json({
             message: 'User SignUp successful!',
             user: {
+                _id: newUser._id,
                 username: newUser.username,
                 fullName: newUser.fullName,
                 profilePicture: newUser.profilePicture,
@@ -73,6 +74,7 @@ export const loginAuth = async (req, res) => {
         res.status(200).json({
             message: 'Login successful!',
             user: {
+                _id: user._id,
                 username: user.username,
                 fullName: user.fullName,
                 profilePicture: user.profilePicture,
