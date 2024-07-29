@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import validateLoginInputs from "../utils/validateLoginInputs";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { AuthContext } from "../context/AuthContext";
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
+    const { setUser } = useContext(AuthContext);
 
     const login = async ({ username, password }) => {
         // validate the inputs
@@ -26,6 +28,7 @@ const useLogin = () => {
             );
 
             setLoading(false);
+            setUser(response.data?.user);
             toast.success('Login successful');
         } catch (error) {
             toast.error(error.message);

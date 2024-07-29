@@ -4,17 +4,17 @@ import { generateToken } from "../utils/jwt.js";
 export const signUpAuth = async (req, res) => {
     try {
         const { fullName, username, password, confirmPassword, gender } = req.body;
-        if(password !== confirmPassword) {
+        if (password !== confirmPassword) {
             return res.status(400).json({ error: 'Passwords do not match' });
         }
 
         const user = await User.findOne({ username });
-        if(user) {
+        if (user) {
             return res.status(400).json({ error: 'User with this username already exists' });
         }
 
         let profilePicture = "";
-        if(gender === 'male') {
+        if (gender === 'male') {
             profilePicture = `https://avatar.iran.liara.run/public/boy?username=${username}`;
         } else {
             profilePicture = `https://avatar.iran.liara.run/public/girl?username=${username}`;
@@ -26,14 +26,23 @@ export const signUpAuth = async (req, res) => {
         // Now, create JWT
         const JWTToken = generateToken({ id: newUser._id });
         const cookieOptions = {
-            maxAge: 15*24*60*60*1000,
+            maxAge: 15 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             sameSite: "strict",
             secure: process.env.NODE_ENV !== 'development'
         };
         res.cookie('token', JWTToken, cookieOptions);
-        res.status(201).json({ message: 'User SignUp successful!', user: newUser, token: JWTToken });
-    } catch(err) {
+        res.status(201).json({
+            message: 'User SignUp successful!',
+            user: {
+                username: newUser.username,
+                fullName: newUser.fullName,
+                profilePicture: newUser.profilePicture,
+                gender: newUser.gender
+            },
+            token: JWTToken
+        });
+    } catch (err) {
         res.status(500).json({ error: `Error occurred while creating the user : ${err}` });
     }
 };
@@ -42,27 +51,36 @@ export const loginAuth = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        if(!user) {
+        if (!user) {
             return res.status(401).json({ error: 'User does not exist' });
         }
 
         // verify the password
         const isPasswordMatch = await user.comparePassword(password);
-        if(!isPasswordMatch) {
+        if (!isPasswordMatch) {
             return res.status(401).json({ error: 'Incorrect password' });
         }
 
         // generate Token
         const JWTtoken = generateToken({ id: user._id });
         const cookieOptions = {
-            maxAge: 15*24*60*60*1000,
+            maxAge: 15 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             sameSite: "strict",
             secure: process.env.NODE_ENV !== 'development'
         };
         res.cookie('token', JWTtoken, cookieOptions);
-        res.status(200).json({ error: 'Login successful!', token: JWTtoken });
-    } catch(err) {
+        res.status(200).json({
+            message: 'Login successful!',
+            user: {
+                username: user.username,
+                fullName: user.fullName,
+                profilePicture: user.profilePicture,
+                gender: user.gender
+            },
+            token: JWTtoken
+        });
+    } catch (err) {
         res.status(500).json({ error: `Error logging the user in: ${err}` });
     }
 };
@@ -71,7 +89,7 @@ export const logoutAuth = (req, res) => {
     try {
         res.cookie('token', '', { maxAge: 0 });
         res.status(200).json({ message: 'User logged out successfully!' });
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ error: 'Error logging the user out' });
     }
 };
