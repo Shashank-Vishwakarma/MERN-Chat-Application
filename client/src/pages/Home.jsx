@@ -3,7 +3,7 @@ import ChatList from '../components/ChatList'
 import ChatBox from '../components/ChatBox'
 import Navbar from '../components/Navbar'
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import AuthContext from '../context/AuthContext.js';
 
 const Home = () => {
     const { user } = useContext(AuthContext);

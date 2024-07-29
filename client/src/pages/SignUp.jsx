@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import useSignUp from '../hooks/useSignUp.js';
+import AuthContext from '../context/AuthContext.js';
 
 const SignUp = () => {
     const navigateTo = useNavigate();
@@ -12,6 +13,11 @@ const SignUp = () => {
         gender: ""
     });
     const { loading, signUp } = useSignUp();
+    const { user } = useContext(AuthContext);
+
+    if(user) {
+        return <Navigate to={'/'} />
+    }
 
     const handleSignUp = async (e)=>{
         e.preventDefault();

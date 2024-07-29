@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import validateLoginInputs from "../utils/validateLoginInputs";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { AuthContext } from "../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
@@ -29,6 +29,10 @@ const useLogin = () => {
 
             setLoading(false);
             setUser(response.data?.user);
+
+            // save the user to local storage so that on refresh, we are not redirected to login page
+            localStorage.setItem('user', response.data?.user);
+
             toast.success('Login successful');
         } catch (error) {
             toast.error(error.message);

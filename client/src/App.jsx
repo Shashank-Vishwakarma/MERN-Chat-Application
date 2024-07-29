@@ -4,11 +4,11 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import { Toaster } from 'react-hot-toast';
-import { AuthContext } from './context/AuthContext.js';
+import AuthContext from './context/AuthContext.js';
 import NotFound from './pages/NotFound.jsx';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem("user") || null);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import AuthContext from '../context/AuthContext.js';
 
 const useLogout = () => {
     const [loading, setLoading] = useState(false);
+    const { setUser } = useContext(AuthContext);
 
     const logout = async () => {
         setLoading(true);
@@ -17,6 +19,11 @@ const useLogout = () => {
             );
 
             setLoading(false);
+            setUser(null);
+
+            // clear the user from local storage
+            localStorage.removeItem("user");
+
             toast.success('Successfully logged out');
         } catch (error) {
             toast.error(error.message);
