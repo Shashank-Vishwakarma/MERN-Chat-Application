@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useLogin from '../hooks/useLogin.js';
 
 const Login = () => {
     const navigateTo = useNavigate();
@@ -8,26 +8,11 @@ const Login = () => {
         username: "",
         password: ""
     });
+    const { loading, login } = useLogin();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
-        try { 
-            const response = await axios.post(
-                'http://localhost:3000/api/v1/auth/login',
-                inputs,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true
-                }
-            );
-
-            console.log(response.data);
-        } catch(error) {
-            console.log(`Error in Login Page: ${error}`);
-        }
+        await login({...inputs});
     }
 
     return (
@@ -78,7 +63,9 @@ const Login = () => {
                         <span>Don't have an account?</span>
                         <span onClick={() => navigateTo('/signup')} className='font-bold cursor-pointer text-blue-400'>Sign Up</span>
                     </div>
-                    <button type='submit' className='btn btn-block btn-sm mt-2' onClick={(e) => e.preventDefault()}>Login</button>
+                    <button type='submit' className='btn btn-block btn-sm mt-2'>
+                        { loading ? <span className='loading loading-spinner'></span> : 'Login' }
+                    </button>
                 </form>
             </div>
         </div>

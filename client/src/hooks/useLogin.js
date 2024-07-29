@@ -1,22 +1,22 @@
 import { useState } from "react";
-import validateInputs from "../utils/validateInputs";
+import validateLoginInputs from "../utils/validateLoginInputs";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const useSignUp = () => {
+const useLogin = () => {
     const [loading, setLoading] = useState(false);
 
-    const signUp = async ({ fullName, username, password, confirmPassword, gender }) => {
+    const login = async ({ username, password }) => {
         // validate the inputs
-        const areInputsValid = validateInputs({ fullName, username, password, confirmPassword, gender });
+        const areInputsValid = validateLoginInputs({ username, password });
         if (!areInputsValid) return;
 
         setLoading(true);
 
         try {
             const response = await axios.post(
-                'http://localhost:3000/api/v1/auth/signup',
-                { fullName, username, password, confirmPassword, gender },
+                'http://localhost:3000/api/v1/auth/login',
+                { username, password },
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ const useSignUp = () => {
             );
 
             setLoading(false);
-            toast.success('Sign Up successful');
+            toast.success('Login successful');
         } catch (error) {
             toast.error(error.message);
         } finally {
@@ -34,7 +34,7 @@ const useSignUp = () => {
         }
     };
 
-    return { loading, signUp };
+    return { loading, login };
 }
 
-export default useSignUp;
+export default useLogin;
