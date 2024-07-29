@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
@@ -11,6 +12,12 @@ import db from './database/db.js';
 
 const app = express();
 dotenv.config();
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    credentials: true
+}));
 
 // to parse req.body as json
 app.use(express.json());
