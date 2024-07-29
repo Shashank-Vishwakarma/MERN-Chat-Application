@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <div className='w-2/3 flex flex-col gap-3 p-4 rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
             <Navbar />
-            <div className='flex flex-row gap-3 justify-between h-full'>
+            <div className='flex flex-row gap-3 h-full'>
                 <ChatList />
                 <ChatBox />
             </div>
