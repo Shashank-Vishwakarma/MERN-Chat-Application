@@ -8,7 +8,7 @@ import AuthContext from './context/AuthContext.js';
 import NotFound from './pages/NotFound.jsx';
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem("user") || null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

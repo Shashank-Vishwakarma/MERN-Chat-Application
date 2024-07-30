@@ -8,7 +8,7 @@ const useGetMessages = () => {
     const { messages, setMessages, selectedChat } = useStore();
 
     useEffect(() => {
-        const getMessags = async () => {
+        const getMessages = async () => {
             setLoading(true);
             try {
                 const response = await axios.get(
@@ -19,7 +19,7 @@ const useGetMessages = () => {
                 );
 
                 setLoading(false);
-                setMessages(response.data?.messages);
+                setMessages([...messages, response.data?.messages]);
             }
             catch (error) {
                 toast.error(error.message);
@@ -28,7 +28,8 @@ const useGetMessages = () => {
             }
         }
 
-        if(selectedChat?._id) getMessags();
+        // get the messages only when a chat is selected
+        if(selectedChat?._id) getMessages();
     }, [selectedChat]);
 
     return { loading, messages };

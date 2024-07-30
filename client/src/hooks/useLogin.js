@@ -31,7 +31,7 @@ const useLogin = () => {
             setUser(response.data?.user);
 
             // save the user to local storage so that on refresh, we are not redirected to login page
-            localStorage.setItem('user', response.data?.user);
+            localStorage.setItem('user', JSON.stringify(response.data?.user));
 
             toast.success('Login successful');
         } catch (error) {

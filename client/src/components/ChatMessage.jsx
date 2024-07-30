@@ -12,26 +12,26 @@ const ChatMessage = () => {
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
                         <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            alt="Chat User 1"
+                            src={selectedChat?.profilePicture} />
                     </div>
                 </div>
                 <div className="chat-header">
-                    John Doe
+                    {selectedChat?.fullName}
                 </div>
-                <div className="chat-bubble text-white">You were the Chosen One!</div>
+                <div className="chat-bubble text-white">Hi..</div>
                 <time className="text-xs chat-footer opacity-50">12:45</time>
             </div>
             <div className="chat chat-end">
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
                         <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            alt="Chat User 2"
+                            src={user?.profilePicture} />
                     </div>
                 </div>
                 <div className="chat-header">
-                    Shashank Vishwakarma
+                    {user?.fullName}
                 </div>
                 <div className="chat-bubble text-white bg-blue-500">I hate you!</div>
                 <time className="text-xs chat-footer opacity-50">12:46</time>
