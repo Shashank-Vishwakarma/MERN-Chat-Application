@@ -4,12 +4,14 @@ import MessageInput from './MessageInput'
 import WelcomeMessage from './WelcomeMessage';
 import useStore from '../zustand/useStore.js';
 import useGetMessages from '../hooks/useGetMessages.js';
+import useListenMessages from '../hooks/useListenMessages.js';
 
 const ChatBox = () => {
+    const messageRef = useRef();
     const { selectedChat, setSelectedChat } = useStore();
     const { loading, messages } = useGetMessages();
 
-    const messageRef = useRef();
+    useListenMessages();
 
     useEffect(()=>{
         setTimeout(()=>{

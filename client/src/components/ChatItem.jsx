@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useStore from '../zustand/useStore.js';
+import { useSocketContext } from '../context/SocketContext.jsx';
 
 const ChatItem = ({ chat }) => {
     const { selectedChat, setSelectedChat } = useStore();
     const isSelected = chat?._id === selectedChat?._id;
-
+    const { onlineUsers } = useSocketContext();
+    const isOnline = onlineUsers.includes(chat?._id);
+    
     return (
         <div 
             className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer ${isSelected ? 'bg-sky-500' : ''}`}
             onClick={()=> setSelectedChat(chat)}
         >
-            <div className="avatar relative online">
+            <div className={`avatar relative ${isOnline ? 'online' : ''} `}>
                 <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
                     <img src={chat?.profilePicture} />
                 </div>
