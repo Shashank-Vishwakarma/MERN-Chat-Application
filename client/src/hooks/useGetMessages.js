@@ -19,7 +19,7 @@ const useGetMessages = () => {
                 );
 
                 setLoading(false);
-                setMessages([...messages, response.data?.messages]);
+                setMessages(response.data?.messages);
             }
             catch (error) {
                 toast.error(error.message);

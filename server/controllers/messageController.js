@@ -44,8 +44,8 @@ export const getMessages = async (req, res) => {
             participants: { $all: [senderId, receiverId] }
         }).populate('messages');
 
-        return res.status(200).json({ messages: conversation.messages });
-    } catch(err) {
-        res.status(500).json({ error: `Error in getting the messages: ${err}` })
+        return res.status(200).json({ messages: conversation?.messages });
+    } catch (err) {
+        res.status(500).json({ error: `Error in getting the messages: ${err}` });
     }
 }
