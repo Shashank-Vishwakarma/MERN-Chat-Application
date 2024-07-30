@@ -2,7 +2,6 @@ import React from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import useStore from '../zustand/useStore.js';
 import formatTime from '../utils/formatTime.js';
-import useListenMessages from '../hooks/useListenMessages.js';
 
 const ChatMessage = ({ message }) => {
     const { user } = useAuthContext();
@@ -10,8 +9,6 @@ const ChatMessage = ({ message }) => {
     const chatClass = (message?.senderId === user?._id) ? 'chat-end' : 'chat-start';
     const profilePicture = (message?.senderId === user?._id) ? user?.profilePicture : selectedChat?.profilePicture;
     const fullName = (message?.senderId === user?._id) ? user?.fullName : selectedChat?.fullName;
-
-    useListenMessages();
 
     return (
         <div className={`chat ${chatClass}`}>
