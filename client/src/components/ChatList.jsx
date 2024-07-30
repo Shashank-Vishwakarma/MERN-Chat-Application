@@ -47,8 +47,8 @@ const ChatList = () => {
             <div className='p-2 overflow-auto flex flex-col h-96'>
                 {
                     loading ? <span className='loading loading-spinner mx-auto'></span> : (
-                        tempUsers?.map((chat, index) => (
-                            <ChatItem key={chat?._id} chat={chat} index={index} />
+                        tempUsers?.map((chat) => (
+                            <ChatItem key={chat?._id} chat={chat} />
                         ))
                     )
                 }

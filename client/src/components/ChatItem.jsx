@@ -1,7 +1,7 @@
 import React from 'react';
 import useStore from '../zustand/useStore.js';
 
-const ChatItem = ({ chat, index }) => {
+const ChatItem = ({ chat }) => {
     const { selectedChat, setSelectedChat } = useStore();
     const isSelected = chat?._id === selectedChat?._id;
 
