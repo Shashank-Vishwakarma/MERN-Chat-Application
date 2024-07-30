@@ -12,7 +12,7 @@ const ChatItem = ({ chat }) => {
         >
             <div className="avatar relative online">
                 <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                    <img src="https://avatar.iran.liara.run/public/boy" />
+                    <img src={chat?.profilePicture} />
                 </div>
             </div>
 
