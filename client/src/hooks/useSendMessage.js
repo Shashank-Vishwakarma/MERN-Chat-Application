@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const useSendMessage = ()=>{
     const [loading, setLoading] = useState(false);
-    const { selectedChat } = useStore();
+    const { selectedChat, messages, setMessages } = useStore();
 
     const sendMessage = async (senderId, receiverId, message) => {
         setLoading(true);
@@ -22,7 +22,7 @@ const useSendMessage = ()=>{
             );
 
             setLoading(false);
-            toast.success(`message sent ${message}`);
+            setMessages([...messages, response.data?.newMessage]);
         } catch(error) {
             toast.error(error.message);
         } finally {

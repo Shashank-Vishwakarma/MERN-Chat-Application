@@ -3,12 +3,23 @@ import useSendMessage from '../hooks/useSendMessage.js';
 import useStore from '../zustand/useStore.js';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext.js';
+import toast from 'react-hot-toast';
 
 const MessageInput = () => {
     const [message, setMessage] = useState("");
     const { loading, sendMessage } = useSendMessage();
     const { selectedChat } = useStore();
     const { user } = useContext(AuthContext);
+
+    const handleSendMessage = async ()=>{
+        if(!message) {
+            toast.error('Message should not be empty');
+            return
+        }
+
+        await sendMessage(user?._id, selectedChat?._id, message);
+        setMessage("");
+    }
 
     return (
         <div className="relative">
@@ -21,7 +32,7 @@ const MessageInput = () => {
             />
             <button
                 className="absolute inset-y-0 right-0 flex items-center px-3"
-                onClick={() => sendMessage(user?._id, selectedChat?._id, message)}
+                onClick={handleSendMessage}
             >
                 {
                     loading ? <span className='loading loading-spinner'></span> : <svg
