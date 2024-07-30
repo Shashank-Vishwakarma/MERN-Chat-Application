@@ -7,10 +7,11 @@ import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 
+import { app, server } from './socket/socket.js';
+
 // importing db.js for making connection to database on project init
 import db from './database/db.js';
 
-const app = express();
 dotenv.config();
 
 app.use(cors({
@@ -31,6 +32,6 @@ app.use('/api/v1/messages', messageRoutes);
 app.use('/api/v1/users', userRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, ()=>{
+server.listen(PORT, ()=>{
     console.log(`Server started running on port ${PORT}`);
 });

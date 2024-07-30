@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import ChatMessage from './ChatMessage'
 import MessageInput from './MessageInput'
 import WelcomeMessage from './WelcomeMessage';
@@ -8,6 +8,14 @@ import useGetMessages from '../hooks/useGetMessages.js';
 const ChatBox = () => {
     const { selectedChat, setSelectedChat } = useStore();
     const { loading, messages } = useGetMessages();
+
+    const messageRef = useRef();
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            messageRef.current?.ScrollIntoView({ behaviour: "smooth" });
+        }, 100);
+    }, [messages]);
 
     useEffect(() => {
         // cleanup resources
@@ -29,7 +37,9 @@ const ChatBox = () => {
                         <span className='loading loading-spinner mx-auto'></span>
                     ) : (
                         messages?.map((message) => (
-                            <ChatMessage key={message?._id} message={message} />
+                            <div key={message?._id} ref={messageRef}>
+                                <ChatMessage message={message} />
+                            </div>
                         ))
                     )
                 }
