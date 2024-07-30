@@ -2,14 +2,15 @@ import React from 'react'
 import ChatMessage from './ChatMessage'
 import MessageInput from './MessageInput'
 import WelcomeMessage from './WelcomeMessage';
+import useStore from '../zustand/useStore.js';
 
 const ChatBox = () => {
-    const noChatSelected = false;
+    const { selectedChat } = useStore();
 
-    return noChatSelected ? <WelcomeMessage/> : (
+    return !selectedChat ? <WelcomeMessage/> : (
         <div className='flex flex-col w-3/4 h-full'>
             <div className='bg-[#282e3b] w-full rounded-t-lg p-2 h-fit text-center font-bold text-white'>
-                John Doe
+                {selectedChat?.fullName}
             </div>
 
             {/* Chat Messages between users */}

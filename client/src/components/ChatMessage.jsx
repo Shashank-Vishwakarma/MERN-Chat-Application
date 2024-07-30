@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import AuthContext from '../context/AuthContext.js';
+import useStore from '../zustand/useStore.js';
 
 const ChatMessage = () => {
+    const { user } = useContext(AuthContext);
+    const { selectedChat } = useStore();
+    
     return (
         <>
             <div className="chat chat-start">
