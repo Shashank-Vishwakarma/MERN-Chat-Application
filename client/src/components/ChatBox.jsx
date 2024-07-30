@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ChatMessage from './ChatMessage'
 import MessageInput from './MessageInput'
 import WelcomeMessage from './WelcomeMessage';
 import useStore from '../zustand/useStore.js';
 
 const ChatBox = () => {
-    const { selectedChat } = useStore();
+    const { selectedChat, setSelectedChat } = useStore();
+
+    useEffect(()=>{
+        // cleanup resources
+        return () => {
+            setSelectedChat(null);
+        }
+    }, [setSelectedChat]);
 
     return !selectedChat ? <WelcomeMessage/> : (
         <div className='flex flex-col w-3/4 h-full'>
