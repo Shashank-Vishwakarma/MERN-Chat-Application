@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import AuthContext from '../context/AuthContext.js';
+import { useAuthContext } from '../context/AuthContext';
 
 const useLogout = () => {
     const [loading, setLoading] = useState(false);
-    const { setUser } = useContext(AuthContext);
+    const { setUser } = useAuthContext();
 
     const logout = async () => {
         setLoading(true);

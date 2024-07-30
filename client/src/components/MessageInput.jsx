@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import useSendMessage from '../hooks/useSendMessage.js';
 import useStore from '../zustand/useStore.js';
-import { useContext } from 'react';
-import AuthContext from '../context/AuthContext.js';
+import { useAuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
 const MessageInput = () => {
     const [message, setMessage] = useState("");
     const { loading, sendMessage } = useSendMessage();
     const { selectedChat } = useStore();
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
 
     const handleSendMessage = async ()=>{
         if(!message) {

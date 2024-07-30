@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import AuthContext from '../context/AuthContext.js';
+import React from 'react';
+import { useAuthContext } from '../context/AuthContext';
 import useStore from '../zustand/useStore.js';
 import formatTime from '../utils/formatTime.js';
 import useListenMessages from '../hooks/useListenMessages.js';
 
 const ChatMessage = ({ message }) => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
     const { selectedChat } = useStore();
     const chatClass = (message?.senderId === user?._id) ? 'chat-end' : 'chat-start';
     const profilePicture = (message?.senderId === user?._id) ? user?.profilePicture : selectedChat?.profilePicture;

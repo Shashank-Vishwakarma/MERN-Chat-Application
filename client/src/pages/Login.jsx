@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useLogin from '../hooks/useLogin.js';
-import AuthContext from '../context/AuthContext.js';
+import { useAuthContext } from '../context/AuthContext';
 
 const Login = () => {
     const navigateTo = useNavigate();
@@ -10,7 +10,7 @@ const Login = () => {
         password: ""
     });
     const { loading, login } = useLogin();
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
 
     if(user) {
         return <Navigate to={'/'} />

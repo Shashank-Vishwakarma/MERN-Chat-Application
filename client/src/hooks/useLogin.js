@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import validateLoginInputs from "../utils/validateLoginInputs";
 import axios from "axios";
 import toast from "react-hot-toast";
-import AuthContext from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false);
-    const { setUser } = useContext(AuthContext);
+    const { setUser } = useAuthContext();
 
     const login = async ({ username, password }) => {
         // validate the inputs

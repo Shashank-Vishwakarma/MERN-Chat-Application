@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ChatList from '../components/ChatList'
 import ChatBox from '../components/ChatBox'
 import Navbar from '../components/Navbar'
 import { Navigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext.js';
+import { useAuthContext } from '../context/AuthContext';
 
 const Home = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
 
     if(!user) {
         return <Navigate to={'/login'} />

@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLogout from '../hooks/useLogout.js';
+import { useAuthContext } from '../context/AuthContext.jsx';
 
 const Navbar = () => {
     const navigateTo = useNavigate();
     const { loading, logout } = useLogout();
+    const { user } = useAuthContext();
 
     const handleLogout = async (e) => {
         e.preventDefault();
@@ -19,6 +21,12 @@ const Navbar = () => {
             </div>
             <div className='flex flex-1'></div>
             <div className="navbar-end">
+                <div className='mx-4'>
+                    <span className='text-white'>Logged in as : </span>
+                    <button className='px-2 py-1 bg-sky-400 shadow-xl rounded-lg'>
+                        <span className='text-black font-bold'>{user?.username}</span>
+                    </button>
+                </div>
                 <button
                     className="btn btn-ghost btn-circle"
                     onClick={handleLogout}

@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import { Toaster } from 'react-hot-toast';
-import AuthContext from './context/AuthContext.js';
 import NotFound from './pages/NotFound.jsx';
 import SocketContextProvider from './context/SocketContext';
+import AuthContextProvider from './context/AuthContext';
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
-
   return (
     <BrowserRouter>
-      <AuthContext.Provider value={{ user, setUser }}>
+      <AuthContextProvider>
         <SocketContextProvider>
           <div className='h-screen p-4 flex items-center justify-center'>
             <Toaster />
@@ -25,7 +23,7 @@ function App() {
             </Routes>
           </div>
         </SocketContextProvider>
-      </AuthContext.Provider>
+      </AuthContextProvider>
     </BrowserRouter>
   )
 }

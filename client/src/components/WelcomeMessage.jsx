@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import AuthContext from '../context/AuthContext'
+import React from 'react'
+import { useAuthContext } from '../context/AuthContext'
 
 const WelcomeMessage = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
 
     return (
         <div className='flex flex-col text-white font-bold items-center justify-center w-full text-xl'>
