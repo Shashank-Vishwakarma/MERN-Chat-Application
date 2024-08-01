@@ -4,9 +4,10 @@ This is a simple chat app for letting users have end-to-end encrypted conversati
 ## Features
 1. Login using Email and password
 2. Sign Up
-3. End-to-End Ecryopted Chat
-4. Shows online users with a green circle
-5. Search for user
+3. Logout
+4. End-to-End Ecryopted Chat
+5. Shows online users with a green circle
+6. Search for user
 
 ### Screenshots
 
