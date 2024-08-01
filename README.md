@@ -4,15 +4,31 @@ This is a simple chat app for letting users have end-to-end encrypted conversati
 ## Features
 1. Login using Email and password
 2. Sign Up
-3. End-to_End Ecryopted Chat
+3. End-to-End Ecryopted Chat
 4. Shows online users with a green circle
 5. Search for user
 
 ### Screenshots
-![chat-msg](https://github.com/user-attachments/assets/80da6d1a-e969-4944-a454-f88ed6cc2e5f)
+
+### Login Page
+
+![login](https://github.com/user-attachments/assets/866e9e44-0875-4025-9d50-e51757938b02)
+
+### Sign Up Page
+
+![signup](https://github.com/user-attachments/assets/da1406ba-3155-49ad-809e-0ce5ef133715)
+
+### Home Page
 
 ![home](https://github.com/user-attachments/assets/f1b98fef-0ffc-4bd4-b701-89d3192e1564)
 
+### Search For user
+
+![search](https://github.com/user-attachments/assets/299816d7-b0d6-404d-b9e6-a4097f934ee0)
+
+### End-to-End encrypted chat between users
+
+![chat-msg](https://github.com/user-attachments/assets/80da6d1a-e969-4944-a454-f88ed6cc2e5f)
 
 ### Technologies
 1. ReactJS
