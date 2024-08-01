@@ -39,8 +39,8 @@ This is a simple chat app for letting users have end-to-end encrypted conversati
 5. Express
 6. Web Socket (socket.io library)
 7. JWT Authentication
-8. Context API
-9. Zustand (for global state management)
+8. Context API (for global state management - socket context and auth context)
+9. Zustand (for global state management - chat messages)
 
 ## Frontend setup
 2. Move to client folder and Run below Commands to run client.
